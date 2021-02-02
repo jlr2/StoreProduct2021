@@ -13,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document
-
+@Builder
 
 public class ProductVO {
     @Id
