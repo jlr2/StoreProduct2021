@@ -5,25 +5,27 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+//import javax.validation.constraints.DecimalMin;
 import java.util.Date;
-
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Document
 @Builder
+@Document
 
 public class ProductVO {
     @Id
     String id;
-    String name;
-    String reference;
     int stock;
-    double price;
-    String supplier;
+    String name;
     String brand;
-    boolean active=true;
     Date modifiedDate;
+  //  @DecimalMin("0.0")
+    double price;
+    @Indexed(unique = true)
+    String reference;
+    String supplier;
+    boolean active=true;
 }

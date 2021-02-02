@@ -3,6 +3,7 @@ package org.iesvalleinclan.storeproduct.controller.impl;
 import org.iesvalleinclan.storeproduct.controller.ProductAPI;
 import org.iesvalleinclan.storeproduct.controller.constant.EndPointUris;
 import org.iesvalleinclan.storeproduct.model.ProductVO;
+import org.iesvalleinclan.storeproduct.model.dto.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,16 +20,31 @@ public class ProductController implements ProductAPI {
     private ProductService productService;
 
     @Override
-    @GetMapping
-    public List<ProductVO> findAll() {
-        return productService.findAll();
+    public ResponseEntity<List<ProductDTO>> findAll() {
+        return ResponseEntity.ok(productService.obtainAll());
+    }
+
+
+    @Override
+    public ResponseEntity<ProductDTO> create(final ProductDTO productDTO) {
+        return ResponseEntity.ok(productService.create(productDTO));
+    }
+
+
+    @Override
+    public ResponseEntity<ProductDTO> modify(/*@Valid*/ final ProductDTO productDTO) {
+        return ResponseEntity.ok(productService.modify(productDTO));
     }
 
     @Override
-    @PostMapping
-    public ProductVO create(@RequestBody ProductVO city) {
-        return productService.create(city);
+    public ResponseEntity<ProductDTO> disable(final String reference) {
+        return ResponseEntity.ok(productService.disable(reference));
     }
+
+
+    public ResponseEntity<ProductDTO> findProduct(final String reference) {
+        return ResponseEntity.ok(productService.findProduct(reference));
+    };
 
 
     // Pruebas de ResponseEntity
