@@ -1,6 +1,7 @@
 package org.iesvalleinclan.storeproduct.controller.impl;
 
 import org.iesvalleinclan.storeproduct.controller.ProductAPI;
+import org.iesvalleinclan.storeproduct.controller.constant.EndPointUris;
 import org.iesvalleinclan.storeproduct.model.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -12,7 +13,6 @@ import org.iesvalleinclan.storeproduct.service.ProductService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/products")
 public class ProductController implements ProductAPI {
 
     @Autowired
@@ -38,6 +38,13 @@ public class ProductController implements ProductAPI {
         return new ResponseEntity<>("Hola Mundo -  prueba 1!", HttpStatus.OK);
     }*/
 
+    //Prueba 1-Version con clase de constantes EndPointsUri :   Construcción de objeto ResponseEntity
+    @PutMapping(EndPointUris.SALUDO)
+    public ResponseEntity<String> holaMundo() {
+        return new ResponseEntity<>("Hola Mundo -  prueba 1!", HttpStatus.OK);
+    }
+
+
     //Prueba 2:  Uso de métodos que incluyen el código de estado.
    /* @PutMapping("/saludo")
     public ResponseEntity<String> holaMundo() {
@@ -51,10 +58,10 @@ public class ProductController implements ProductAPI {
     }*/
 
     // Prueba 4.   Ruta con variables usando la construcción de objeto ResponseEntity
-   /* @PutMapping("/{nombre}")
+    @PutMapping("/{nombre}")
     public ResponseEntity<String> holaMundo(@PathVariable String nombre) {
         return new ResponseEntity("Hola " + nombre  + "  prueba 4", HttpStatus.OK);
-    }*/
+    }
 
     // Prueba 5.   Paso de más de una variable.  NO FUNCIONA. Da respuesta  HTTP Status 400 – Bad Request
    /* @PutMapping("/{nombre}&{apellidos}")
